@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>
+        <%=title%>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar navbar-bright navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a href="/dashboard" class="navbar-brand">Home</a>
+            </div>
+            <nav class="collapse navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <% for(i=0 ; i< nav.length ; i++){ %>
+                        <li>
+                            <a href="<%=nav[i].link %>">
+                                <%=nav[i].text %>
+                            </a>
+                        </li>
+                        <% } %>
+                </ul>
+                <ul class="nav navbar-right navbar-nav">
+                    <li>
+                        <a href="/">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>
+                        <%=title%>
+                            <p class="lead">
+                                <%=description%>
+                            </p>
+                    </h1>
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+        </div>
+        <!-- /cont -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="top-spacer"> </div>
+                </div>
+            </div>
+        </div>
+        <!-- /cont -->
+
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="panel">
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <% if(status == "added"){ %>
+                                    <div class="alert alert-success" role="alert">
+                                        Successfully Added Book.
+                                    </div>
+                                    <% } %>
+                                        <% if(whois != "admin-of-library"){ %>
+                                            <div class="" role="alert">
+                                                <form action="/dashboard/addbooks" method="POST" id="formsubmitlogin">
+                                                    <div class="form-group"><input required class="form-control" name="whois" value="" placeholder="Type the password to add book"></div><button type="submit" class="btn btn-danger">Login as Admin to add new book</button></form>
+                                            </div>
+                                            <% } else{ %>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h1 class="card-title text-center mb-5">
+                                                            <%=description%>
+                                                        </h1>
+                                                        <span class="card-text">
+                                        <form action="/dashboard/addbook" enctype="multipart/form-data" method="POST" id="formsubmitlogin">
+                                            <span id="formerror"></span>
+                                                        <div class="form-group">
+                                                            <label for="email">Title:</label>
+                                                            <input required type="text" maxlength="60" class="form-control" id="title" name="title">
+                                                            <span id="titleerror"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="author">Author:</label>
+                                                            <input required type="text" maxlength="30" class="form-control" id="author" name="author">
+                                                            <span id="authorerror"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="genre">Genre:</label>
+                                                            <input required type="text" maxlength="25" class="form-control" id="genre" name="genre">
+                                                            <span id="genreerror"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="image">Image:</label>
+                                                            <input required type="file" class="form-control" id="image" name="image">
+                                                            <span id="imageerror"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea required type="text" row="5" maxlength="30000" class="form-control" id="description" name="description"></textarea>
+                                                            <span id="descriptionerror"></span>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success">Add New Book</button>
+                                                        </form>
+                                                        </span><br>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                            </div>
+                            <div class="col-lg-3"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!--/col-12-->
+        </div>
+    </div>
+
+
+    <hr>
+
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col col-sm-12">
+
+                <h1>Follow Us</h1>
+                <div class="btn-group">
+                    <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
+                    <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
+                    <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <hr>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-inline">
+                        <li><i class="icon-facebook icon-2x"></i></li>
+                        <li><i class="icon-twitter icon-2x"></i></li>
+                        <li><i class="icon-google-plus icon-2x"></i></li>
+                        <li><i class="icon-pinterest icon-2x"></i></li>
+                    </ul>
+
+                </div>
+                <div class="col-sm-6">
+                    <p class="pull-right">Built with <i class="icon-heart-empty"></i> by <a href="https://eldhose.org" target="_blank">Eldhose</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
